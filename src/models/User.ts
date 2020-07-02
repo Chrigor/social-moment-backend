@@ -1,4 +1,4 @@
-import { Schema, model } from "mongoose";
+import { Schema, model } from 'mongoose';
 
 const UserSchema = new Schema(
   {
@@ -42,4 +42,4 @@ const UserModel = model("User", UserSchema);
 
 // UserModel.updateOne()
 
-export default model("User", UserSchema);
+export default UserModel;

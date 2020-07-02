@@ -1,17 +1,21 @@
-import { Schema, model } from 'mongoose';
+import { Schema, model } from "mongoose";
 
-const PostSchema = new Schema({
-  id_user: {
-    type: String,
+const PostSchema = new Schema(
+  {
+    id_user: {
+      type: Number,
+      required: true,
+    },
+    content: {
+      type: String,
+      required: true,
+    },
   },
-  content: {
-    type: String
-  },
-  datetime: {
-    type: Date,
-  },
-});
+  {
+    timestamps: true,
+  }
+);
 
-const PostModel = model('Post', PostSchema);
+const PostModel = model("Post", PostSchema);
 
 export default PostModel;

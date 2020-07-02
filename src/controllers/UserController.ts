@@ -15,7 +15,7 @@ class UserController {
       name,
       birthday,
       email,
-      password,
+      password
     };
 
     await User.create(user);
