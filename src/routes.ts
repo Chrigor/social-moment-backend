@@ -7,6 +7,7 @@ routes.get('/', (req: Request, res: Response) => {
   res.send('Hello');
 });
 
-routes.get('/users', UserController.index);
+routes.get('/user', UserController.index);
+routes.post('/user', UserController.create);
 
 export default routes;
