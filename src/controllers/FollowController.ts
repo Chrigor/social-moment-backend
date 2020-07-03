@@ -10,7 +10,9 @@ class FollowController {
 
   public async create(req: Request, res: Response): Promise<Response> {
     // futuramente id_user_seguidor virá do token
-    const { id_user_seguidor, id_user_seguido } = req.body;
+    const id_user_seguidor = 3;
+
+    const { id_user_seguido } = req.body;
 
     const follow = {
       id_user_seguido,
@@ -38,7 +40,7 @@ class FollowController {
         message: "Follow not found",
       });
     }
-   
+
     const deleted = await follow.deleteOne();
 
     return res.json(deleted);
