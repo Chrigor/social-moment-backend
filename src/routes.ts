@@ -1,16 +1,23 @@
 import { Router, Request, Response } from 'express';
+import auth from './middlewares/auth';
+
 import UserController from './controllers/UserController';
 import PostController from './controllers/PostController';
 import FollowController from './controllers/FollowController';
 import LikeController from './controllers/LikeController';
 import CommentController from './controllers/CommentController';
 import ShareController from './controllers/ShareController';
+import SessionController from './controllers/SessionController';
 
 const routes = Router();
 
 routes.get('/', (req: Request, res: Response) => {
   res.send('Hello');
 });
+
+routes.post('/session', SessionController.create);
+
+routes.use(auth);
 
 routes.get('/user', UserController.index);
 routes.post('/user', UserController.create);

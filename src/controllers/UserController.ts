@@ -1,21 +1,28 @@
-import { Request, Response } from 'express';
-import User from '../models/User';
+import { Request, Response } from "express";
+import User from "../models/User";
+import { encryptPassword } from "../utils/Password";
 
 class UserController {
   public async index(req: Request, res: Response): Promise<Response> {
     const users = await User.find();
 
+    // id do usuário logado
+    // const { consumerId } = req;
+    // console.dir(consumerId);
+
     return res.json(users);
   }
 
-  public async create(req: Resquest, res: Response): Promise<Response> {
-    const { name, birthday, email, password } = req.body;
+  public async create(req: Request, res: Response): Promise<Response> {
+    let { name, birthday, email, password } = req.body;
+
+    password = await encryptPassword(password);
 
     const user = {
       name,
       birthday,
       email,
-      password
+      password,
     };
 
     await User.create(user);

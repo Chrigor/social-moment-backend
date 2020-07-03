@@ -1,4 +1,4 @@
-import { Schema, model } from 'mongoose';
+import { Schema, model } from "mongoose";
 
 const UserSchema = new Schema(
   {
@@ -17,18 +17,18 @@ const UserSchema = new Schema(
     },
     password: {
       type: String,
-      select: true,
+      select: false,
       required: true,
     },
     accountChecked: {
       type: Boolean,
-      select: true,
+      select: false,
       default: false,
-      required: "true",
+      required: true,
     },
     accountToken: {
       type: String,
-      select: true,
+      select: false,
       default: "123456",
       required: true,
     },
@@ -39,7 +39,5 @@ const UserSchema = new Schema(
 );
 
 const UserModel = model("User", UserSchema);
-
-// UserModel.updateOne()
 
 export default UserModel;
