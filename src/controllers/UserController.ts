@@ -31,7 +31,7 @@ class UserController {
 
     await User.create(user);
 
-    sendMail({
+    let statusSendMail = await sendMail({
       to: email,
       subject: "Ativar conta!",
       template: "activeAccount",
@@ -40,6 +40,13 @@ class UserController {
         name,
       },
     });
+
+    if(statusSendMail.title.toUpperCase() == "SUCESS"){
+      console.log('Tranquilo...');
+    } else {
+      console.log('Tratar erro ...');
+      console.dir(statusSendMail)
+    }
 
     return res.json(user);
   }

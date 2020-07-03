@@ -9,16 +9,21 @@ class SessionController {
     let secret = process.env.JWT_SECRET;
     let expiresIn = process.env.JWT_EXPIRESIN;
 
-    console.log(secret);
-
     const user = await User.findOne({
       email,
-    }).select('+password');
+    }).select("+password accountChecked");
 
     if (!user) {
       return res.status(401).json({
         title: "Error",
         message: "User not found",
+      });
+    }
+
+    if (!user.accountChecked) {
+      return res.status(403).json({
+        title: "Error",
+        message: "Active your account",
       });
     }
 
