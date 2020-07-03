@@ -8,6 +8,7 @@ import LikeController from './controllers/LikeController';
 import CommentController from './controllers/CommentController';
 import ShareController from './controllers/ShareController';
 import SessionController from './controllers/SessionController';
+import AccountController from './controllers/AccountController';
 
 const routes = Router();
 
@@ -17,6 +18,7 @@ routes.get('/', (req: Request, res: Response) => {
 
 routes.post('/session', SessionController.create);
 routes.post('/user', UserController.create);
+routes.post('/checkAccount', AccountController.create);
 
 routes.use(auth);
 
