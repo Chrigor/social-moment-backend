@@ -4,6 +4,7 @@ import PostController from './controllers/PostController';
 import FollowController from './controllers/FollowController';
 import LikeController from './controllers/LikeController';
 import CommentController from './controllers/CommentController';
+import ShareController from './controllers/ShareController';
 
 const routes = Router();
 
@@ -29,5 +30,9 @@ routes.delete('/like', LikeController.delete);
 routes.get('/comment', CommentController.index);
 routes.post('/comment', CommentController.create);
 routes.delete('/comment', CommentController.delete);
+
+routes.get('/share', ShareController.index);
+routes.post('/share', ShareController.create);
+routes.delete('/share', ShareController.delete);
 
 export default routes;

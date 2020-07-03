@@ -27,19 +27,23 @@ class CommentController {
   public async delete(req: Request, res: Response): Promise<Response> {
     const id_user = 3; // isso virá do token
 
-    const { id_comment } = req.body;
+    const { id_comment: _id } = req.body;
 
-    const comment = await Comment.findOne({
-      id_user,
-      _id: id_comment,
+    const comment: Document<Comment> = await Comment.findOne({
+      _id,
     });
-
-    console.log(id_comment, id_user);
 
     if (!comment) {
       return res.json({
         title: "Error",
         message: "comment not found",
+      });
+    }
+
+    if (comment.id_user !== id_user) {
+      return res.json({
+        title: "Error",
+        message: "Operation not permitted",
       });
     }
 

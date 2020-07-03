@@ -10,7 +10,8 @@ class PostController {
 
   public async create(req: Request, res: Response): Promise<Response> {
     // o id_user virá do token posteriormente
-    const { id_user, content } = req.body;
+    const id_user = 3;
+    const { content } = req.body;
 
     const post = {
       id_user,
@@ -23,16 +24,16 @@ class PostController {
   }
 
   public async delete(req: Request, res: Response): Promise<Response> {
-    const id_author = 3; // isso aqui vira do token
+    const id_user = 3; // isso aqui vira do token
 
-    const { id_post } = req.body;
+    const { id_post: _id } = req.body;
 
     const post = await Post.findOne({
-      id_user: id_author,
-      _id: id_post
+      id_user,
+      _id,
     });
 
-    if(!post){
+    if (!post) {
       return res.json({
         title: "Error",
         message: "Post not found",
