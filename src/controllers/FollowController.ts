@@ -25,28 +25,21 @@ class FollowController {
   public async delete(req: Request, res: Response): Promise<Response> {
     const id_user_logado = 1; // isso virá do token
 
-    const { id_user_seguidor, id_user_seguido } = req.body;
+    const { id_user_seguido } = req.body;
 
-    const register = await Follow.findOne({
-      id_user_seguidor,
+    const follow = await Follow.findOne({
+      id_user_seguidor: id_user_logado,
       id_user_seguido,
     });
 
-    if (!register) {
+    if (!follow) {
       return res.json({
         title: "Error",
         message: "Follow not found",
       });
     }
-
-    if (id_user_seguidor !== id_user_logado) {
-      return res.status(403).json({
-        title: 'Error',
-        message: 'Operation not permitted'
-      });
-    }
-
-    const deleted = await register.deleteOne();
+   
+    const deleted = await follow.deleteOne();
 
     return res.json(deleted);
   }
