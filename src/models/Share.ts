@@ -1,4 +1,11 @@
-import { model, Schema } from "mongoose";
+import { model, Schema, Document} from "mongoose";
+
+interface IShare {
+  id_post:number,
+  id_user:number
+}
+
+type ShareType = IShare & Document;
 
 const ShareSchema = new Schema({
   id_post: {
@@ -13,6 +20,6 @@ const ShareSchema = new Schema({
   timestamps: true
 });
 
-const ShareModel = model('Share', ShareSchema);
+const ShareModel = model<ShareType>('Share', ShareSchema);
 
 export default ShareModel;

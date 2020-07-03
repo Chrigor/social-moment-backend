@@ -16,11 +16,11 @@ routes.get('/', (req: Request, res: Response) => {
 });
 
 routes.post('/session', SessionController.create);
+routes.post('/user', UserController.create);
 
 routes.use(auth);
 
 routes.get('/user', UserController.index);
-routes.post('/user', UserController.create);
 
 routes.get('/post', PostController.index);
 routes.post('/post', PostController.create);

@@ -29,7 +29,7 @@ class CommentController {
 
     const { id_comment: _id } = req.body;
 
-    const comment: Document<Comment> = await Comment.findOne({
+    const comment = await Comment.findOne({
       _id,
     });
 

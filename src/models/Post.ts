@@ -1,4 +1,11 @@
-import { Schema, model } from "mongoose";
+import { Schema, model, Document } from "mongoose";
+
+interface IPost {
+  id_user:number,
+  content:string
+}
+
+type PostType = IPost & Document;
 
 const PostSchema = new Schema(
   {
@@ -16,6 +23,6 @@ const PostSchema = new Schema(
   }
 );
 
-const PostModel = model("Post", PostSchema);
+const PostModel = model<PostType>("Post", PostSchema);
 
 export default PostModel;
