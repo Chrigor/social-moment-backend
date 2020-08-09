@@ -1,4 +1,3 @@
-import { promisify } from "util";
 import nodemailer from "nodemailer";
 import { configureTemplate } from "../utils/configureTemplate";
 import getMailConfig from "../config/mailConfig";
@@ -6,7 +5,7 @@ import getMailConfig from "../config/mailConfig";
 interface Parameters {
   to: string;
   subject: string;
-  template: Object | string;
+  template: object | String;
   context: object;
 }
 
@@ -18,7 +17,7 @@ async function sendMail({ to, subject, template, context }: Parameters) {
   configureTemplate(transporter);
 
   try {
-    let reponse = await transporter.sendMail({
+    await transporter.sendMail({
       to,
       from,
       subject,

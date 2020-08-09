@@ -20,7 +20,7 @@ routes.post('/session', SessionController.create);
 routes.post('/user', UserController.create);
 routes.post('/checkAccount', AccountController.create);
 
-routes.use(auth);
+// routes.use(auth);
 
 routes.get('/user', UserController.index);
 
